@@ -79,26 +79,52 @@ npm install
 
 ### 2. Configure Environment Variables
 
-Create a `.env` file in the root directory (refer to `.env.example`):
+Create a `.env` file in the root directory (for frontend):
 
 ```env
 VITE_GEMINI_API_KEY=YOUR_GEMINI_API_KEY_HERE
 VITE_GEMINI_MODEL=gemini-2.5-flash
+VITE_API_URL=http://localhost:5000/api
 ```
 
-*Note: If no API key is provided in `.env`, the application automatically operates in **Local Demo Mode** using intelligent contextual responses so you can test the UI without disruption.*
+Create a `.env` file in the `backend` directory (for backend):
 
-### 3. Run Development Server
+```env
+PORT=5000
+MONGODB_URI=mongodb://127.0.0.1:27017/pulseai
+JWT_SECRET=supersecretjwtkey_pulseai
+```
+
+### 3. Setup and Run Backend
+
+Ensure you have MongoDB running locally (or update the URI to an Atlas cluster). Then:
 
 ```bash
+cd backend
+npm install
+node scripts/seedAdmin.js
+npm start
+```
+
+**Admin Credentials** (Created via seed script):
+- Email: `admin@pulseai.com`
+- Password: `admin123`
+
+### 4. Run Development Server (Frontend)
+
+Open a new terminal in the project root:
+
+```bash
+cd frontend
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open [http://localhost:3000](http://localhost:3000) (or whichever port Vite uses) in your browser.
 
-### 4. Build for Production
+### 5. Build for Production
 
 ```bash
+cd frontend
 npm run build
 ```
 

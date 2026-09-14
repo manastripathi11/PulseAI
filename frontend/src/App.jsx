@@ -13,6 +13,10 @@ import { EmployeesPage } from './pages/EmployeesPage';
 import { AnalyticsPage } from './pages/AnalyticsPage';
 import { SettingsPage } from './pages/SettingsPage';
 import { NotFoundPage } from './pages/NotFoundPage';
+import { ContactPage } from './pages/ContactPage';
+import { LoginPage } from './pages/LoginPage';
+import { RegisterPage } from './pages/RegisterPage';
+import { AdminDashboard } from './pages/AdminDashboard';
 
 export default function App() {
   return (
@@ -24,6 +28,10 @@ export default function App() {
               <Routes>
                 {/* Landing Page */}
                 <Route path="/" element={<LandingPage />} />
+                <Route path="/contact" element={<ContactPage />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/register" element={<RegisterPage />} />
+                <Route path="/admin" element={<AdminDashboard />} />
 
                 {/* Main Dashboard Application Shell */}
                 <Route element={<AppLayout />}>

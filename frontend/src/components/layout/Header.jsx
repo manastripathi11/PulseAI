@@ -31,9 +31,19 @@ export function Header({ onToggleMobileNav }) {
 
   const currentMeta = getPageTitle(location.pathname);
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    navigate('/login');
+  };
+
+  const storedUser = JSON.parse(localStorage.getItem('user') || 'null');
+  const avatarName = storedUser ? storedUser.name : userProfile.name;
+
   const profileMenuItems = [
     { label: 'View Profile', icon: User, onClick: () => navigate('/settings') },
     { label: 'Preferences', icon: Settings, onClick: () => navigate('/settings') },
+    { label: 'Logout', icon: User, onClick: handleLogout },
   ];
 
   return (
@@ -112,7 +122,7 @@ export function Header({ onToggleMobileNav }) {
           <Dropdown
             trigger={
               <button className="flex items-center gap-2 p-1 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors shrink-0" aria-label="User profile menu">
-                <Avatar src={userProfile.avatar} name={userProfile.name} size="sm" />
+                <Avatar src={userProfile.avatar} name={avatarName} size="sm" />
               </button>
             }
             items={profileMenuItems}
